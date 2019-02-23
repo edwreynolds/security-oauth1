@@ -1,0 +1,18 @@
+.container-fluid .text-muted {
+  margin: 10px 0;
+  color: #182991;		/* text color DLA blue */
+  text-align: center;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  border-top: 2px solid #182991;
+  background-color: #ffffff;
+}		
+.footer > .container-fluid {
+  padding-right: 5px;
+  padding-left: 5px;
+}

@@ -1,0 +1,28 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 42px;
+}
+
+.container-fluid .text-muted {
+  margin: 10px 0;
+  color: #182991;		/* text color DLA blue */
+  text-align: center;
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here, add 2 pixels to account for footer's top border line */
+  height: 42px;
+  border-top: 2px solid #182991;
+  background-color: #ffffff;
+}
+
