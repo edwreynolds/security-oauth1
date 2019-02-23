@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>security-oauth1</name>
-	<description>Spring security OAUTh proto #1</description>
+	<description>Spring security OAuth2 proto #1</description>
 
 	<properties>
 		<java.version>1.8</java.version>
