@@ -108,8 +108,6 @@
 				alert("TODO: Display help content");
 			});
 			
-			requestContentUpdate();
-			
 		} catch(ex) {
 			console.log("ready() caught an exception! "+ex);
 		}

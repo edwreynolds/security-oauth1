@@ -17,17 +17,31 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+        <oauth-auto.version>2.1.3.RELEASE</oauth-auto.version>    
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
+		<!-- 
+		To make the application secure we just need to add Spring Security 
+		as a dependency. If we do that the default will be to secure it with 
+		HTTP Basic, so since we want to do a "social" login (delegate to 
+		Github), we add the Spring Security OAuth2 dependency as well:
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-client</artifactId>
+        </dependency>
+        <!-- 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-jose</artifactId>
+        </dependency>
+         -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
