@@ -101,6 +101,22 @@
 				alert("TODO:  Logout current user");
 			});
 			
+			
+			$("#logOut").click( function() {
+				alert("TODO:  Logout current user");
+			});
+			$("#logOut").show();
+			$("#logIn").hide();
+			
+			$("#userId").click( function() {
+				alert("TODO:  Show user details");
+			});
+			$("#userId").show();
+			
+			$("#settingsId").click( function() {
+				alert("TODO:  Settings");
+			});
+
 			$("#helpImgId").click( function(/*event*/) { 
 				alert("TODO: Display help content");
 			});
@@ -132,15 +148,18 @@
                 <ul class="nav navbar-nav "></ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" id="userId"><span class="glyphicon glyphicon-user"></span>  Role: Admin | John Doe</a></li>
+                    <li><a href="#" id="logOut" title="Log Off"><span class="glyphicon glyphicon-off"></span> LogOut</a></li>
+					<li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span> Menu</a>
+					   <ul class="dropdown-menu">
+					     <li><a id="reportsId"><span class="glyphicon glyphicon-paperclip"></span>  Reports</a></li>
+					     <li><a id="statsId"><span class="glyphicon glyphicon-stats"></span>  Stats</a></li>
+					     <li><a id="chartsId"><span class="glyphicon glyphicon glyphicon-pencil"></span>  Charts</a></li>
+					   </ul>
+					</li>
+                    <li><a href="#" id="settingsId"><span class="glyphicon glyphicon-cog"></span>  Settings</a></li>
                     <li><a href="#" id="helpImgId"><span class="glyphicon glyphicon-question-sign"></span>  Help</a></li>
-                    <li>
-                        <div style="margin-top:15px;">
-                            <p>
-                                Role: Admin | John Doe &nbsp;
-                                <a href="#" id="logOut" title="Log Off"><span class="glyphicon glyphicon-off"></span></a>
-                            </p>
-                        </div>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

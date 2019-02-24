@@ -35,7 +35,7 @@ package com.epr.util;
  */
 public class VersionInfo {
 	
-    public static final String APP_VERSION_NBR = "1.1.0";
+    public static final String APP_VERSION_NBR = "1.2.0";
     public static final String RESOURCE_VERSION_NBR = APP_VERSION_NBR.replaceAll("\\.", "_").replaceAll(" ", "-");
 	
     private VersionInfo() {}

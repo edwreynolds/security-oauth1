@@ -17,7 +17,7 @@
 	<meta name="viewport" content="width=device-width,?initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <meta name="description" content="Scan point synthesizer appy">
+    <meta name="description" content="OAuth2 App">
 	
 	<!-- Bootstrap CSS -->
 	<!--<link rel='stylesheet' href="webjars/font-awsome/4.7.0/css/font-awesome.min.css"> -->	
@@ -103,11 +103,26 @@
 			$("#logOut").click( function() {
 				alert("TODO:  Logout current user");
 			});
+			$("#logOut").hide();
 			
+			$("#userId").click( function() {
+				alert("TODO:  Show user details");
+			});
+			$("#userId").hide();
+			
+			//$("#logIn").click( function() {
+				//$.get("/home");				
+				//alert("TODO:  Login");
+			//});
+			
+			$("#settingsId").click( function() {
+				alert("TODO:  Settings");
+			});
+
 			$("#helpImgId").click( function(/*event*/) { 
 				alert("TODO: Display help content");
 			});
-			
+
 		} catch(ex) {
 			console.log("ready() caught an exception! "+ex);
 		}
@@ -135,16 +150,21 @@
                 <ul class="nav navbar-nav "></ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./home" id="logIn" title="Log In"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
+                    <li><a href="#" id="userId"><span class="glyphicon glyphicon-user"></span>  Role: Admin | John Doe</a></li>
+                    <li><a href="#" id="logOut" title="Log Off"><span class="glyphicon glyphicon-off"></span> LogOut</a></li>
+					<li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span> Menu</a>
+					   <ul class="dropdown-menu">
+					     <li><a id="reportsId"><span class="glyphicon glyphicon-paperclip"></span>  Reports</a></li>
+					     <li><a id="statsId"><span class="glyphicon glyphicon-stats"></span>  Stats</a></li>
+					     <li><a id="chartsId"><span class="glyphicon glyphicon glyphicon-pencil"></span>  Charts</a></li>
+					   </ul>
+					</li>
+                    <li><a href="#" id="settingsId"><span class="glyphicon glyphicon-cog"></span>  Settings</a></li>
                     <li><a href="#" id="helpImgId"><span class="glyphicon glyphicon-question-sign"></span>  Help</a></li>
-                    <li>
-                        <div style="margin-top:15px;">
-                            <p>
-                                Role: Admin | John Doe &nbsp;
-                                <a href="#" id="logOut" title="Log Off"><span class="glyphicon glyphicon-off"></span></a>
-                            </p>
-                        </div>
-                    </li>
                 </ul>
+                    
             </div>
             <!-- /.navbar-collapse -->
         </div>
