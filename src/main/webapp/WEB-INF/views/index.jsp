@@ -28,7 +28,7 @@
 	<!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css"  href="css/sticky-footer-navbar.css">
 
-	<title>Scan Point Synthesizer App</title>
+	<title>OAuth using GitHub App</title>
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
 	

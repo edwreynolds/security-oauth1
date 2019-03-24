@@ -4,11 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Prototype app using Spring Security and OAuth2 client to force login to 
- * page localhost:8099/secured/home but not require authentication to 
- * reach default page localhost:8099
+ * Prototype app using Spring Security, Spring Boot and OAuth2 
+ * client to force authorized login to page 192.168.1.12:8080/home 
+ * but not require authorization to reach default page 192.168.1.12:8080
  * 
- * Use: Spring Boot(2.13), WebMVC, Security, OAuth Client, Lombok, Java 8
+ * Note the use of an actual IP address.  That's because in GitHub the callback
+ * URL has been set to use the IP address of home development PC.  Could
+ * use localhost but then app must be run on target machine.  By using
+ * specific IP are able to execute this app from some other machine that
+ * has newtork access to 192.168.1.12
+ * 
+ * Use: Spring Boot(2.1.3), WebMVC, Security(5.1), OAuth Client, Lombok, Java 8
  * 
  * Github is being used for OAuth2 authentication
  * 

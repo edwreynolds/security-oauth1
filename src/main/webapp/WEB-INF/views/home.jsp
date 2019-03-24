@@ -28,7 +28,7 @@
 	<!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css"  href="../css/sticky-footer-navbar.css">
 
-	<title>Scan Point Synthesizer App</title>
+	<title>OAuth using GitHub App</title>
 	<link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 
 	
@@ -66,6 +66,14 @@
 
 	<script>
 	"use strict";
+	
+	function handlGetRepoSuccess(data, textStatus, jqXHR) {
+		console.log("Get Repos success: "+JSON.stringify(data))
+		$("#repoListTxt").val(JSON.stringify(data, undefined, 4));
+	}
+	function handleGetReposFail(jqXHR, textStatus, errorThrown) {
+		console.error("Get Repos failed: status="+textStatus,+", error="+errorThrown);
+	}
 	
 	$( document ).ready(function() {
 		try {
@@ -121,6 +129,16 @@
 				alert("TODO: Display help content");
 			});
 			
+			$("#getRepoBtn").click( function() {
+				$.ajax({
+					url: "./getRepos",
+					method: "POST",
+					timeout: 60000,
+					data: {},
+					datatype: "json"
+				}).then(handlGetRepoSuccess, handleGetReposFail);
+			});
+			
 		} catch(ex) {
 			console.log("ready() caught an exception! "+ex);
 		}
@@ -170,6 +188,10 @@
     <h2 id="appTitle" style="text-align:center;"></h2>
 
     <div class="container">
+    	<input type="button" id="getRepoBtn" value="Get Repos">
+    	<br/>
+    	<br/>
+    	<textarea id="repoListTxt" cols="120" rows="30" readonly></textarea>
     </div>
 
     <footer class="footer">
