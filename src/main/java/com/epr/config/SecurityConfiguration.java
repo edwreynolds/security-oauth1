@@ -35,6 +35,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/", "/login**", "/webjars/**", "/error**", "/images/**", "/css/**", "/js/**").permitAll()
 			.anyRequest().authenticated().and().oauth2Login();
 
+		// HttpSecurity.oauth2Client() provides a number of configuration options for customizing
+		// OAuth 2.0 Client. The following code shows the complete configuration options 
+		// available for the oauth2Client()
+		/*
+		http
+		.oauth2Client()
+		.clientRegistrationRepository(this.clientRegistrationRepository())
+		.authorizedClientRepository(this.authorizedClientRepository())
+		.authorizedClientService(this.authorizedClientService())
+		.authorizationCodeGrant()
+		.authorizationRequestRepository(this.authorizationRequestRepository())
+		.authorizationRequestResolver(this.authorizationRequestResolver())
+		.accessTokenResponseClient(this.accessTokenResponseClient());		
+		*/
+		
+		
+		// various options to further customize logout requirements:
+		/*
+		http
+			.logout()
+			.logoutUrl("logout")
+			.logoutSuccessUrl("index")
+			.logoutSuccessHandler(logoutSuccessHandler)
+			.invalidateHttpSession(true)
+			.addLogoutHandler(logoutHandler)
+			.deleteCookies(cookieNamesToClear);
+		*/
+		
 	}
 	
 }

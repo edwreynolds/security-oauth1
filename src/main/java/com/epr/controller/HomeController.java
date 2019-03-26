@@ -2,6 +2,7 @@ package com.epr.controller;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +17,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,17 +61,12 @@ public class HomeController {
 	private String getRepoInfo() {
 
 		// After a successful authentication with an external OAuth 2 service, the
-		// Authentication
-		// object kept in the security context is actually an OAuth2AuthenticationToken
-		// which,
-		// along with help from OAuth2AuthorizedClientService can avail us with an
-		// access token
-		// for making requests against the service’s API.
+		// Authentication object kept in the security context is actually an 
+		// OAuth2AuthenticationToken which, along with help from OAuth2AuthorizedClientService 
+		// can avail us with an access token for making requests against the service’s API.
 		//
-		// The Authentication can be obtained in many ways, including via
-		// SecurityContextHolder.
-		// Once you have the Authentication, you can cast it to
-		// OAuth2AuthenticationToken.
+		// The Authentication can be obtained in many ways, including via SecurityContextHolder.
+		// Once you have the Authentication, you can cast it to OAuth2AuthenticationToken.
 		//
 		// There will be an OAuth2AuthorizedClientService automatically configured as a
 		// bean in the Spring application context.
@@ -81,7 +80,16 @@ public class HomeController {
 		// Request the access token from the OAuth service.
 		final String accessToken = client.getAccessToken().getTokenValue();
 		logger.info("Access token: {}", accessToken);
-
+		
+		Object principal = authentication.getPrincipal();
+		String username;
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		logger.info("username(principal)={}",username);
+		
 //		StringBuilder sb = new StringBuilder();
 //		sb.append("oauthToken=");
 //		sb.append(oauthToken);
@@ -117,18 +125,14 @@ public class HomeController {
 	}
 
 	private String getRepoInfoEx() {
+
 		// After a successful authentication with an external OAuth 2 service, the
-		// Authentication
-		// object kept in the security context is actually an OAuth2AuthenticationToken
-		// which,
-		// along with help from OAuth2AuthorizedClientService can avail us with an
-		// access token
-		// for making requests against the service’s API.
+		// Authentication object kept in the security context is actually an 
+		// OAuth2AuthenticationToken which, along with help from OAuth2AuthorizedClientService 
+		// can avail us with an access token for making requests against the service’s API.
 		//
-		// The Authentication can be obtained in many ways, including via
-		// SecurityContextHolder.
-		// Once you have the Authentication, you can cast it to
-		// OAuth2AuthenticationToken.
+		// The Authentication can be obtained in many ways, including via SecurityContextHolder.
+		// Once you have the Authentication, you can cast it to OAuth2AuthenticationToken.
 		//
 		// There will be an OAuth2AuthorizedClientService automatically configured as a
 		// bean in the Spring application context.
@@ -139,6 +143,26 @@ public class HomeController {
 			logger.error("Unable to load authorized client");
 			throw new IllegalAccessError("Unable to load authorized client");
 		}
+		
+		// UserDetails is a core interface in Spring Security
+		Object principal = authentication.getPrincipal();
+		String username;
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else if (principal instanceof DefaultOAuth2User) {
+			logger.info("principal(DefaultOAuth2User)={}",principal.toString());
+			username = (String) ((DefaultOAuth2User) principal).getAttributes().get("login");
+		} else {
+			username = principal.toString();
+		}
+		logger.info("username(principal)={}",username);
+		
+		// GrantedAuthority, to reflect the application-wide permissions granted to a principal
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		for(GrantedAuthority auth : authorities) {
+			logger.info("GrantedAuthority{}",auth);
+		}
+		
 		// Request the access token from the OAuth service.
 		final String accessToken = client.getAccessToken().getTokenValue();
 		logger.info("Access token: {}", accessToken);
